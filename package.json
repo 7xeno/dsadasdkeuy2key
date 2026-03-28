@@ -1,0 +1,9 @@
+{
+  "name": "doxkey",
+  "version": "2.0.0",
+  "description": "DoxKey - Sistema de Key para scripts Roblox",
+  "main": "api/index.js",
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  }
+}
