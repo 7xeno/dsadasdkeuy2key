@@ -13,7 +13,7 @@ local HttpService  = game:GetService("HttpService")
 local LocalPlayer  = Players.LocalPlayer
 
 -- ⚠️ COLE A URL DA VERCEL AQUI
-local SERVER_URL = "https://dsadasdkeuy2key.vercel.app/"
+local SERVER_URL = "https://dsadasdkeuy2key.vercel.app"
 
 local NOME = "DoxKey System"
 local VER  = "v2.0"
