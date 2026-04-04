@@ -71,10 +71,8 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // Marca keys expiradas automaticamente a cada request
     await checarExpiradas(db);
 
-    // GET /api/keys
     if (req.method === 'GET' && url.startsWith('/api/keys') && !url.includes('/verificar')) {
         const keys = await db.collection('keys').find({}).sort({ _id: -1 }).toArray();
         const fmt = keys.map(k => ({
@@ -85,7 +83,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // POST /api/keys/gerar
     if (req.method === 'POST' && url === '/api/keys/gerar') {
         const { quantidade, duracao } = req.body;
         const novas = [];
@@ -108,7 +105,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // POST /api/keys/revogar
     if (req.method === 'POST' && url === '/api/keys/revogar') {
         const { id } = req.body;
         const k = await db.collection('keys').findOne({ id });
@@ -120,7 +116,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // POST /api/keys/restaurar
     if (req.method === 'POST' && url === '/api/keys/restaurar') {
         const { id } = req.body;
         const k = await db.collection('keys').findOne({ id });
@@ -135,7 +130,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // POST /api/keys/resetar-hwid
     if (req.method === 'POST' && url === '/api/keys/resetar-hwid') {
         const { id } = req.body;
         const k = await db.collection('keys').findOne({ id });
@@ -146,7 +140,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // GET /api/verificar?key=DOXKEY-XXX&hwid=HWID-XXX
     if (req.method === 'GET' && url.startsWith('/api/verificar')) {
         const params = new URLSearchParams(url.split('?')[1] || '');
         const keyId  = (params.get('key') || '').toUpperCase();
@@ -157,7 +150,6 @@ module.exports = async (req, res) => {
         if (!k) { res.status(200).json({ ok: false, motivo: 'key_nao_encontrada' }); return; }
         if (k.status === 'revogada') { res.status(200).json({ ok: false, motivo: 'key_revogada' }); return; }
 
-        // Checa expiração em tempo real
         if (estaExpirada(k)) {
             await db.collection('keys').updateOne({ id: keyId }, { $set: { status: 'expirada' } });
             await adicionarLog(db, `key ${keyId} expirou automaticamente`);
@@ -167,7 +159,6 @@ module.exports = async (req, res) => {
         if (k.status === 'expirada') { res.status(200).json({ ok: false, motivo: 'key_expirada' }); return; }
         if (k.hwid && k.hwid !== hwid) { res.status(200).json({ ok: false, motivo: 'hwid_diferente' }); return; }
 
-        // Vincula HWID na primeira vez
         if (!k.hwid && hwid) {
             await db.collection('keys').updateOne({ id: keyId }, { $set: { hwid } });
             await adicionarLog(db, `key ${keyId} vinculada ao HWID ${hwid.slice(0,12)}...`);
@@ -185,7 +176,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-    // GET /api/logs
     if (req.method === 'GET' && url === '/api/logs') {
         const logs = await db.collection('logs').find({}).sort({ _id: -1 }).limit(100).toArray();
         res.status(200).json({ ok: true, logs });
