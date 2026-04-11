@@ -10,7 +10,6 @@ async function conectar() {
     return client.db(DB_NAME);
 }
 
-
 function lerBody(req) {
     return new Promise((resolve) => {
         let raw = '';
@@ -35,12 +34,16 @@ function gerarId() {
 function calcularExpiracao(duracao) {
     if (duracao === 'forever') return null;
     const mapa = {
-        '1h':   1 * 60 * 60 * 1000,
-        '6h':   6 * 60 * 60 * 1000,
-        '12h': 12 * 60 * 60 * 1000,
-        '1d':   1 * 24 * 60 * 60 * 1000,
-        '7d':   7 * 24 * 60 * 60 * 1000,
-        '30d': 30 * 24 * 60 * 60 * 1000,
+        '1min':  1 * 60 * 1000,
+        '5min':  5 * 60 * 1000,
+        '10min': 10 * 60 * 1000,
+        '30min': 30 * 60 * 1000,
+        '1h':    1 * 60 * 60 * 1000,
+        '6h':    6 * 60 * 60 * 1000,
+        '12h':  12 * 60 * 60 * 1000,
+        '1d':    1 * 24 * 60 * 60 * 1000,
+        '7d':    7 * 24 * 60 * 60 * 1000,
+        '30d':  30 * 24 * 60 * 60 * 1000,
     };
     const ms = mapa[duracao];
     if (!ms) return null;
@@ -89,7 +92,7 @@ module.exports = async (req, res) => {
     const body = req.method === 'POST' ? await lerBody(req) : {};
     const senha = req.headers['x-admin-senha'] || body.senha || '';
 
-
+  
     if (req.method === 'POST' && url === '/api/login') {
         if (autenticar(body.senha || '')) {
             res.status(200).json({ ok: true });
@@ -137,7 +140,6 @@ module.exports = async (req, res) => {
 
     await checarExpiradas(db);
 
-
     if (req.method === 'GET' && url.startsWith('/api/keys')) {
         const keys = await db.collection('keys').find({}).sort({ _id: -1 }).toArray();
         const total_expiradas = keys.filter(k => k.status === 'expirada').length;
@@ -146,7 +148,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-  
     if (req.method === 'POST' && url === '/api/keys/gerar') {
         const { quantidade, duracao, lembrete } = body;
         const novas = [];
@@ -171,7 +172,6 @@ module.exports = async (req, res) => {
         return;
     }
 
-   
     if (req.method === 'POST' && url === '/api/keys/revogar') {
         const { id } = body;
         const k = await db.collection('keys').findOne({ id });
@@ -182,7 +182,6 @@ module.exports = async (req, res) => {
         res.status(200).json({ ok: true });
         return;
     }
-
 
     if (req.method === 'POST' && url === '/api/keys/restaurar') {
         const { id } = body;
@@ -206,8 +205,7 @@ module.exports = async (req, res) => {
         return;
     }
 
- 
-    if (req.method === 'POST' && url === '/api/keys/deletar') {
+       if (req.method === 'POST' && url === '/api/keys/deletar') {
         const { id } = body;
         const k = await db.collection('keys').findOne({ id });
         if (!k) { res.status(404).json({ ok: false, erro: 'key não encontrada' }); return; }
@@ -217,14 +215,14 @@ module.exports = async (req, res) => {
         return;
     }
 
-   
+
     if (req.method === 'POST' && url === '/api/logs/clear') {
         await db.collection('logs').deleteMany({});
         res.status(200).json({ ok: true });
         return;
     }
 
-   
+
     if (req.method === 'POST' && url === '/api/keys/clear') {
         await db.collection('keys').deleteMany({});
         await adicionarLog(db, 'todas as keys foram apagadas', 'r');
@@ -232,7 +230,7 @@ module.exports = async (req, res) => {
         return;
     }
 
-   
+  
     if (req.method === 'GET' && url === '/api/logs') {
         const logs = await db.collection('logs').find({}).sort({ _id: -1 }).limit(100).toArray();
         res.status(200).json({ ok: true, logs });
