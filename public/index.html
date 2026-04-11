@@ -16,6 +16,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
+
 #login-screen{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:200}
 #login-screen.gone{display:none}
 .login-box{background:#0a0a0a;border:1px solid #1f1f1f;border-radius:14px;padding:36px;width:320px;text-align:center}
@@ -27,6 +28,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 .login-btn{width:100%;padding:12px;background:#fff;color:#000;border:none;border-radius:8px;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s}
 .login-btn:hover{background:#ddd}
 .login-err{font-size:11px;color:#f87171;font-family:'JetBrains Mono',monospace;margin-top:10px;min-height:16px}
+
 
 #intro{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;gap:14px;transition:opacity 0.8s ease}
 #intro.gone{opacity:0;pointer-events:none}
@@ -153,6 +155,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 .spinner{width:14px;height:14px;border:2px solid #333;border-top-color:#000;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block}
 .toast{position:fixed;bottom:24px;right:24px;background:#111;border:1px solid #222;border-radius:8px;padding:10px 18px;font-size:11px;font-family:'JetBrains Mono',monospace;z-index:999;display:none;align-items:center;gap:8px;pointer-events:none}
 
+
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;align-items:center;justify-content:center}
 .modal-wrap.open{display:flex}
 .modal{background:#0d0d0d;border:1px solid #222;border-radius:14px;padding:24px;width:380px;max-width:92vw}
@@ -177,6 +180,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 <body>
 <canvas id="bg"></canvas>
 
+
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">dox<span>key</span></div>
@@ -186,6 +190,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
     <div class="login-err" id="login-err"></div>
   </div>
 </div>
+
 
 <div id="intro">
   <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:5px;color:#2a2a2a;opacity:0;animation:fadeUp 0.6s 0.2s forwards">KEY MANAGEMENT SYSTEM</div>
@@ -271,6 +276,10 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
             <div><label class="form-label">Duração</label>
               <select class="fselect" id="gen-dur">
                 <option value="forever">Forever</option>
+                <option value="1min">1 Minuto</option>
+                <option value="5min">5 Minutos</option>
+                <option value="10min">10 Minutos</option>
+                <option value="30min">30 Minutos</option>
                 <option value="1h">1 Hora</option>
                 <option value="6h">6 Horas</option>
                 <option value="12h">12 Horas</option>
@@ -350,6 +359,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 
 <div class="toast" id="toast"></div>
 
+
 <div class="modal-wrap" id="modal-lembrete">
   <div class="modal">
     <div class="modal-title">
@@ -365,6 +375,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
     </div>
   </div>
 </div>
+
 
 <div class="modal-wrap" id="modal-hwid">
   <div class="modal">
@@ -472,6 +483,7 @@ function updateStats(expiradas) {
     document.getElementById('s-expir').textContent = expiradas !== undefined ? expiradas : keys.filter(k => k.status === 'expirada').length;
     document.getElementById('s-hwid').textContent = keys.filter(k => k.hwid).length;
 }
+
 
 function gerarKeys() {
     const qty = Math.min(parseInt(document.getElementById('gen-qty').value) || 1, 100);
