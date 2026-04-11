@@ -11,11 +11,10 @@ html,body{background:#000;min-height:100vh;font-family:'Inter',sans-serif;color:
 canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes barGrow{from{width:0}to{width:min(260px,55vw)}}
-@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,255,255,0.5)) drop-shadow(0 0 20px rgba(255,255,255,0.2))}50%{filter:drop-shadow(0 0 18px rgba(255,255,255,0.9)) drop-shadow(0 0 40px rgba(255,255,255,0.4))}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,255,255,0.5))}50%{filter:drop-shadow(0 0 18px rgba(255,255,255,0.9))}}
 @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-
 
 #login-screen{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:200}
 #login-screen.gone{display:none}
@@ -29,44 +28,43 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 .login-btn:hover{background:#ddd}
 .login-err{font-size:11px;color:#f87171;font-family:'JetBrains Mono',monospace;margin-top:10px;min-height:16px}
 
-
 #intro{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;gap:14px;transition:opacity 0.8s ease}
 #intro.gone{opacity:0;pointer-events:none}
 #main{position:relative;z-index:10;opacity:0;transition:opacity 0.8s ease;pointer-events:none;min-height:100vh}
 #main.visible{opacity:1;pointer-events:all}
 
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid #1a1a1a;background:#000;position:sticky;top:0;z-index:20}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid #1a1a1a;background:#000;position:sticky;top:0;z-index:20;flex-wrap:wrap;gap:8px}
 .nav-logo{display:flex;align-items:center;gap:12px}
-.nav-logo-fallback{width:42px;height:42px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;animation:glowPulse 3s ease-in-out infinite;flex-shrink:0}
-.nav-logo-img{width:42px;height:42px;object-fit:contain;border-radius:10px;animation:glowPulse 3s ease-in-out infinite}
-.nav-logo-name{font-size:22px;font-weight:900;letter-spacing:-1px;color:#fff;text-shadow:0 0 20px rgba(255,255,255,0.35)}
+.nav-logo-fallback{width:38px;height:38px;border-radius:9px;background:#111;display:flex;align-items:center;justify-content:center;animation:glowPulse 3s ease-in-out infinite;flex-shrink:0}
+.nav-logo-img{width:38px;height:38px;object-fit:contain;border-radius:9px;animation:glowPulse 3s ease-in-out infinite}
+.nav-logo-name{font-size:20px;font-weight:900;letter-spacing:-1px;color:#fff;text-shadow:0 0 20px rgba(255,255,255,0.35)}
 .nav-logo-name .k{color:#666}
-.nav-right{display:flex;align-items:center;gap:8px}
-.nav-link{background:transparent;border:1px solid #222;color:#666;padding:7px 16px;font-size:12px;cursor:pointer;letter-spacing:1px;transition:all 0.2s;border-radius:6px;font-family:'Inter',sans-serif}
+.nav-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nav-link{background:transparent;border:1px solid #222;color:#666;padding:6px 14px;font-size:11px;cursor:pointer;letter-spacing:1px;transition:all 0.2s;border-radius:6px;font-family:'Inter',sans-serif}
 .nav-link:hover{border-color:#fff;color:#fff}
 .nav-link.active{background:#fff;color:#000;border-color:#fff}
-.logout-btn{background:transparent;border:1px solid #2a0808;color:#f87171;padding:7px 14px;font-size:11px;cursor:pointer;border-radius:6px;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
+.logout-btn{background:transparent;border:1px solid #2a0808;color:#f87171;padding:6px 12px;font-size:11px;cursor:pointer;border-radius:6px;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
 .logout-btn:hover{background:#f8717111}
 
-.status-bar{display:flex;align-items:center;gap:8px;padding:8px 32px;border-bottom:1px solid #0f0f0f;font-family:'JetBrains Mono',monospace;font-size:10px;background:#000}
+.status-bar{display:flex;align-items:center;gap:8px;padding:7px 32px;border-bottom:1px solid #0f0f0f;font-family:'JetBrains Mono',monospace;font-size:10px;background:#000}
 .sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .sdot.green{background:#4ade80;animation:pulse 2s ease-in-out infinite}
 .sdot.red{background:#f87171}
 .sdot.yellow{background:#fbbf24;animation:pulse 1s ease-in-out infinite}
 .stxt{color:#333}
 
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#111;border-bottom:1px solid #111;margin-bottom:40px}
-.stat{background:#000;padding:20px;text-align:center}
-.stat-n{font-size:28px;font-weight:900;font-family:'JetBrains Mono',monospace}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#111;border-bottom:1px solid #111;margin-bottom:36px}
+.stat{background:#000;padding:18px;text-align:center}
+.stat-n{font-size:26px;font-weight:900;font-family:'JetBrains Mono',monospace}
 .stat-n.green{color:#4ade80}.stat-n.red{color:#f87171}.stat-n.blue{color:#60a5fa}.stat-n.white{color:#fff}.stat-n.yellow{color:#fbbf24}
 .stat-label{font-size:10px;color:#444;letter-spacing:2px;margin-top:4px;text-transform:uppercase}
 
 .section{padding:0 32px 48px}
-.sec-title{font-size:10px;letter-spacing:3px;color:#333;margin-bottom:20px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:12px;text-transform:uppercase}
+.sec-title{font-size:10px;letter-spacing:3px;color:#333;margin-bottom:18px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:12px;text-transform:uppercase}
 .sec-title::after{content:'';flex:1;height:1px;background:#111}
 
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:32px}
-.mcard{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:22px;transform-style:preserve-3d;transition:border-color 0.3s;will-change:transform;position:relative;overflow:hidden;cursor:default}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:28px}
+.mcard{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:20px;transform-style:preserve-3d;transition:border-color 0.3s;will-change:transform;position:relative;overflow:hidden;cursor:default}
 .mcard::before{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .mcard.gc::before{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(74,222,128,0.07) 0%,transparent 70%)}
 .mcard.bc::before{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(96,165,250,0.07) 0%,transparent 70%)}
@@ -74,23 +72,23 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 .mcard.rc::before{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(248,113,113,0.07) 0%,transparent 70%)}
 .mcard:hover::before{opacity:1}
 .mcard:hover{border-color:#2a2a2a}
-.card-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.card-ico svg{width:18px;height:18px}
+.card-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.card-ico svg{width:17px;height:17px}
 .card-ico.g{background:#052a10}.card-ico.b{background:#041a2e}.card-ico.y{background:#2a1a00}.card-ico.r{background:#2a0808}
-.card-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px}
+.card-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
 .card-desc{font-size:11px;color:#444;line-height:1.6;font-family:'JetBrains Mono',monospace}
-.card-badge{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+.card-badge{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
 .card-badge.g{background:#052a10;color:#4ade80}.card-badge.b{background:#041a2e;color:#60a5fa}.card-badge.y{background:#2a1a00;color:#fbbf24}.card-badge.r{background:#2a0808;color:#f87171}
 
-.action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.action-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:22px;transform-style:preserve-3d;will-change:transform;transition:border-color 0.3s;position:relative;overflow:hidden}
+.action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.action-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:20px;transform-style:preserve-3d;will-change:transform;transition:border-color 0.3s;position:relative;overflow:hidden}
 .action-card::before{content:'';position:absolute;inset:0;border-radius:12px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0.03) 0%,transparent 70%);opacity:0;transition:opacity 0.3s;pointer-events:none}
 .action-card:hover::before{opacity:1}
 .action-card:hover{border-color:#2a2a2a}
-.ac-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.ac-title svg{width:15px;height:15px;opacity:0.35}
+.ac-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ac-title svg{width:14px;height:14px;opacity:0.35}
 
-.form-label{font-size:10px;color:#444;letter-spacing:1px;margin-bottom:6px;font-family:'JetBrains Mono',monospace;display:block;text-transform:uppercase}
+.form-label{font-size:10px;color:#444;letter-spacing:1px;margin-bottom:5px;font-family:'JetBrains Mono',monospace;display:block;text-transform:uppercase}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .finput,.fselect{background:#000;border:1px solid #1f1f1f;border-radius:6px;padding:9px 11px;font-size:12px;color:#ccc;font-family:'JetBrains Mono',monospace;outline:none;width:100%;transition:border 0.15s}
 .finput:focus,.fselect:focus{border-color:#333;color:#fff}
@@ -100,16 +98,16 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 
 .btn-gen{width:100%;padding:11px;background:#fff;color:#000;border:none;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-gen:hover{background:#ddd}.btn-gen:active{transform:scale(0.98)}.btn-gen:disabled{opacity:0.5;cursor:not-allowed}
-.btn-rev{width:100%;padding:10px;background:transparent;color:#f87171;border:1px solid #f87171;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-rev{width:100%;padding:9px;background:transparent;color:#f87171;border:1px solid #f87171;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-rev:hover{background:#f8717111}
-.btn-rst{width:100%;padding:10px;background:transparent;color:#4ade80;border:1px solid #4ade80;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-rst{width:100%;padding:9px;background:transparent;color:#4ade80;border:1px solid #4ade80;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-rst:hover{background:#4ade8011}
-.btn-hwid{width:100%;padding:10px;background:transparent;color:#60a5fa;border:1px solid #60a5fa;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-hwid{width:100%;padding:9px;background:transparent;color:#60a5fa;border:1px solid #60a5fa;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-hwid:hover{background:#60a5fa11}
-.btn-danger{width:100%;padding:10px;background:transparent;color:#f87171;border:1px solid #2a0808;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-danger{width:100%;padding:9px;background:transparent;color:#f87171;border:1px solid #2a0808;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-danger:hover{background:#f8717111;border-color:#f87171}
 
-.output-keys{background:#000;border:1px solid #1f1f1f;border-radius:8px;padding:14px;display:none;animation:popIn 0.3s ease}
+.output-keys{background:#000;border:1px solid #1f1f1f;border-radius:8px;padding:12px;display:none;animation:popIn 0.3s ease}
 .output-keys.visible{display:block}
 .output-keys-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .output-keys-label{font-size:10px;color:#444;letter-spacing:1px;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
@@ -117,70 +115,94 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
 .copy-all-btn:hover{color:#4ade80;border-color:#4ade80}
 .output-key-line{color:#4ade80;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:2;cursor:pointer;padding:1px 4px;border-radius:3px;transition:background 0.1s}
 .output-key-line:hover{background:#0a2a0a}
-.output-key-lembrete{font-size:10px;color:#fbbf24;font-family:'JetBrains Mono',monospace;margin-top:4px;padding:4px 8px;background:#2a1a00;border-radius:4px;display:inline-block}
+.output-key-lembrete{font-size:10px;color:#fbbf24;font-family:'JetBrains Mono',monospace;margin-top:4px;padding:3px 8px;background:#2a1a00;border-radius:4px;display:inline-block}
 
-.keys-filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
-.fbtn{background:#000;border:1px solid #1a1a1a;color:#444;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s}
+.keys-filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.fbtn{background:#000;border:1px solid #1a1a1a;color:#444;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s}
 .fbtn.on,.fbtn:hover{border-color:#fff;color:#fff}
-.fsearch{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px;padding:7px 12px;font-size:11px;color:#ccc;font-family:'JetBrains Mono',monospace;outline:none;width:160px}
+.fsearch{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px;padding:6px 12px;font-size:11px;color:#ccc;font-family:'JetBrains Mono',monospace;outline:none;width:150px}
 .fsearch::placeholder{color:#222}
 .fcount{margin-left:auto;font-size:10px;color:#333;font-family:'JetBrains Mono',monospace}
 
-.key-row{background:#0a0a0a;border:1px solid #111;border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;transition:border-color 0.15s;animation:popIn 0.25s ease}
+.key-row{background:#0a0a0a;border:1px solid #111;border-radius:8px;padding:11px 14px;display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;transition:border-color 0.15s;animation:popIn 0.25s ease}
 .key-row:hover{border-color:#222}
 .key-code{font-family:'JetBrains Mono',monospace;font-size:11px;color:#ccc;font-weight:700;flex:1;min-width:160px}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:4px;font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace}
 .b-ativa{background:#052a10;color:#4ade80}
 .b-revogada{background:#2a0808;color:#f87171}
 .b-expirada{background:#2a1a00;color:#fbbf24}
 .b-dur{background:#111;color:#333}
 .b-lembrete{background:#1a1400;color:#fbbf24;font-size:9px}
 .key-info{font-family:'JetBrains Mono',monospace;font-size:10px;color:#2a2a2a;flex:1;min-width:100px;line-height:1.8}
-.key-btns{display:flex;gap:6px;flex-wrap:wrap}
-.kb{background:#000;border:1px solid #1a1a1a;color:#444;padding:4px 10px;border-radius:4px;font-size:10px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.15s;display:flex;align-items:center;gap:4px}
+.key-btns{display:flex;gap:5px;flex-wrap:wrap}
+.kb{background:#000;border:1px solid #1a1a1a;color:#444;padding:4px 9px;border-radius:4px;font-size:10px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.15s;display:flex;align-items:center;gap:3px}
 .kb svg{width:10px;height:10px}
-.kb:hover{color:#fff;border-color:#fff}.kb.d:hover{color:#f87171;border-color:#f87171}.kb.del:hover{color:#f87171;border-color:#f87171}
+.kb:hover{color:#fff;border-color:#fff}.kb.d:hover{color:#f87171;border-color:#f87171}
 
-.logs-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.clear-logs-btn{background:transparent;border:1px solid #2a0808;color:#f87171;padding:6px 14px;font-size:11px;cursor:pointer;border-radius:6px;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
+.logs-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.clear-logs-btn{background:transparent;border:1px solid #2a0808;color:#f87171;padding:5px 12px;font-size:11px;cursor:pointer;border-radius:6px;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
 .clear-logs-btn:hover{background:#f8717111}
-.logs-list{display:flex;flex-direction:column;gap:6px}
-.log-item{background:#0a0a0a;border:1px solid #111;border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;animation:popIn 0.2s ease}
+.logs-list{display:flex;flex-direction:column;gap:5px}
+.log-item{background:#0a0a0a;border:1px solid #111;border-radius:6px;padding:9px 14px;display:flex;align-items:center;gap:10px;animation:popIn 0.2s ease}
 .ldot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .ldot.g{background:#4ade80}.ldot.r{background:#f87171}.ldot.b{background:#60a5fa}.ldot.y{background:#fbbf24}
 .ltext{font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;flex:1}
 .ltime{font-size:10px;color:#222;font-family:'JetBrains Mono',monospace}
 .empty{text-align:center;padding:32px;color:#222;font-family:'JetBrains Mono',monospace;font-size:11px}
 
+/* WEBHOOK TAB */
+.wh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.wh-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;padding:18px}
+.wh-card-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px}
+.wh-card-desc{font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;margin-bottom:10px;line-height:1.5}
+.wh-row{display:flex;gap:8px;align-items:center}
+.wh-input{background:#000;border:1px solid #1f1f1f;border-radius:6px;padding:8px 10px;font-size:11px;color:#ccc;font-family:'JetBrains Mono',monospace;outline:none;flex:1;transition:border 0.15s}
+.wh-input:focus{border-color:#333}
+.wh-input::placeholder{color:#1f1f1f}
+.wh-test{background:transparent;border:1px solid #222;color:#555;padding:8px 12px;border-radius:6px;font-size:10px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.15s;white-space:nowrap}
+.wh-test:hover{color:#4ade80;border-color:#4ade80}
+.wh-save-btn{width:100%;padding:11px;background:#fff;color:#000;border:none;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px}
+.wh-save-btn:hover{background:#ddd}
+.wh-status{font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:6px;min-height:14px}
+
 .spinner{width:14px;height:14px;border:2px solid #333;border-top-color:#000;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block}
 .toast{position:fixed;bottom:24px;right:24px;background:#111;border:1px solid #222;border-radius:8px;padding:10px 18px;font-size:11px;font-family:'JetBrains Mono',monospace;z-index:999;display:none;align-items:center;gap:8px;pointer-events:none}
 
-
+/* MODAL GENÉRICO */
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;align-items:center;justify-content:center}
 .modal-wrap.open{display:flex}
 .modal{background:#0d0d0d;border:1px solid #222;border-radius:14px;padding:24px;width:380px;max-width:92vw}
-.modal-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.modal-key{font-family:'JetBrains Mono',monospace;font-size:10px;color:#60a5fa;margin-bottom:12px;word-break:break-all}
-.modal-hwid{background:#000;border:1px solid #1a1a1a;border-radius:6px;padding:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#60a5fa;word-break:break-all;margin-top:6px}
-.modal-footer{display:flex;gap:8px;margin-top:14px}
-.modal-footer button{flex:1;padding:9px;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
-.mbtn-confirm{background:#fff;color:#000}.mbtn-skip{background:#1a1a1a;color:#666}.mbtn-copy{background:#60a5fa;color:#000}.mbtn-close{background:#1a1a1a;color:#666}
+.modal-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.modal-desc{font-size:11px;color:#555;font-family:'JetBrains Mono',monospace;margin-bottom:16px;line-height:1.6}
+.modal-key-show{font-family:'JetBrains Mono',monospace;font-size:11px;color:#fbbf24;background:#2a1a00;padding:6px 10px;border-radius:5px;margin-bottom:14px;word-break:break-all}
+.modal-hwid-val{background:#000;border:1px solid #1a1a1a;border-radius:6px;padding:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#60a5fa;word-break:break-all;margin-top:6px}
+.modal-footer{display:flex;gap:8px;margin-top:16px}
+.modal-footer button{flex:1;padding:10px;border-radius:6px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:0.5px}
+.mbtn-confirm{background:#fff;color:#000}
+.mbtn-confirm:hover{background:#ddd}
+.mbtn-cancel{background:#1a1a1a;color:#666}
+.mbtn-cancel:hover{background:#222;color:#999}
+.mbtn-danger{background:#2a0808;color:#f87171;border:1px solid #f87171!important}
+.mbtn-danger:hover{background:#f8717122}
+.mbtn-copy{background:#60a5fa;color:#000}
+.mbtn-close{background:#1a1a1a;color:#666}
 
 .tab-content{display:none}.tab-content.on{display:block}
 
-@media(max-width:600px){
-  .navbar{padding:14px 16px}.nav-logo-name{font-size:18px}
-  .nav-right{gap:4px}.nav-link{padding:6px 10px;font-size:10px;letter-spacing:0}
+@media(max-width:640px){
+  .navbar{padding:12px 16px}.nav-logo-name{font-size:17px}
+  .nav-right{gap:4px}.nav-link{padding:5px 10px;font-size:10px;letter-spacing:0}
   .section{padding:0 16px 32px}.cards-grid{grid-template-columns:1fr 1fr}
   .action-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(3,1fr)}.status-bar{padding:6px 16px}
+  .wh-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 
-
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">dox<span>key</span></div>
@@ -191,14 +213,14 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
   </div>
 </div>
 
-
+<!-- INTRO -->
 <div id="intro">
   <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:5px;color:#2a2a2a;opacity:0;animation:fadeUp 0.6s 0.2s forwards">KEY MANAGEMENT SYSTEM</div>
   <div style="display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp 0.7s 0.5s forwards">
-    <div style="width:64px;height:64px;border-radius:14px;background:#111;display:flex;align-items:center;justify-content:center;animation:glowPulse 3s ease-in-out infinite">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+    <div style="width:60px;height:60px;border-radius:13px;background:#111;display:flex;align-items:center;justify-content:center;animation:glowPulse 3s ease-in-out infinite">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
     </div>
-    <div style="font-size:clamp(40px,10vw,72px);font-weight:900;letter-spacing:-3px">
+    <div style="font-size:clamp(38px,10vw,68px);font-weight:900;letter-spacing:-3px">
       <span style="color:#fff;text-shadow:0 0 30px rgba(255,255,255,0.6)">dox</span><span style="color:#fff;text-shadow:0 0 30px rgba(255,255,255,0.6)">key</span>
     </div>
   </div>
@@ -211,7 +233,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
     <div class="nav-logo">
       <img src="doxsite.png" alt="" class="nav-logo-img" id="logo-img" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex'">
       <div class="nav-logo-fallback" id="logo-fb" style="display:none">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
       </div>
       <div class="nav-logo-name">dox<span class="k">key</span></div>
     </div>
@@ -219,6 +241,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
       <button class="nav-link active" onclick="switchTab('dashboard',this)">Dashboard</button>
       <button class="nav-link" onclick="switchTab('keys',this)">Keys</button>
       <button class="nav-link" onclick="switchTab('logs',this)">Logs</button>
+      <button class="nav-link" onclick="switchTab('webhook',this)">Webhook</button>
       <button class="logout-btn" onclick="logout()">sair</button>
     </div>
   </div>
@@ -228,6 +251,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
     <span class="stxt" id="srv-txt">conectando...</span>
   </div>
 
+  <!-- DASHBOARD -->
   <div class="tab-content on" id="tab-dashboard">
     <div class="stats">
       <div class="stat"><div class="stat-n white" id="s-total">0</div><div class="stat-label">Total</div></div>
@@ -290,7 +314,7 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
             </div>
           </div>
           <button class="btn-gen" id="btn-gerar" onclick="gerarKeys()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             GERAR AGORA
           </button>
           <div class="output-keys" id="output-keys">
@@ -308,31 +332,20 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
           </div>
           <label class="form-label">Key</label>
           <input class="finput mb10" type="text" id="manage-k" placeholder="DOXKEY-XXXXXXXX-XXXXXXXX">
-          <button class="btn-rev" onclick="revogarKey()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
-            Revogar Key
-          </button>
-          <button class="btn-rst" onclick="restaurarKey()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
-            Restaurar Key
-          </button>
-          <button class="btn-hwid" onclick="resetarHWID()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Resetar HWID
-          </button>
-          <button class="btn-danger" onclick="deletarKey()" style="margin-top:4px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-            Deletar Key
-          </button>
+          <button class="btn-rev" onclick="revogarKey()">Revogar Key</button>
+          <button class="btn-rst" onclick="restaurarKey()">Restaurar Key</button>
+          <button class="btn-hwid" onclick="resetarHWID()">Resetar HWID</button>
+          <button class="btn-danger" onclick="deletarKey(null)" style="margin-top:4px">Deletar Key</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- KEYS -->
   <div class="tab-content" id="tab-keys">
     <div class="section" style="padding-top:24px">
       <div class="sec-title">todas as keys
-        <button class="clear-logs-btn" onclick="clearKeys()" style="margin-left:auto;font-size:10px">apagar todas</button>
+        <button class="clear-logs-btn" onclick="confirmar('Apagar TODAS as keys?','Esta ação é permanente e irreversível.',clearKeys,'danger')" style="margin-left:auto">apagar todas</button>
       </div>
       <div class="keys-filters">
         <button class="fbtn on" onclick="setFilter('todas',this)">Todas</button>
@@ -346,80 +359,106 @@ canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none
     </div>
   </div>
 
+  <!-- LOGS -->
   <div class="tab-content" id="tab-logs">
     <div class="section" style="padding-top:24px">
       <div class="logs-header">
         <div class="sec-title" style="margin:0;flex:1">histórico</div>
-        <button class="clear-logs-btn" onclick="clearLogs()">limpar logs</button>
+        <button class="clear-logs-btn" onclick="confirmar('Limpar todos os logs?','Esta ação não pode ser desfeita.',clearLogs,'danger')">limpar logs</button>
       </div>
       <div class="logs-list" id="logs-list"><div class="empty">// nenhum log ainda</div></div>
+    </div>
+  </div>
+
+  <!-- WEBHOOK -->
+  <div class="tab-content" id="tab-webhook">
+    <div class="section" style="padding-top:24px">
+      <div class="sec-title">webhooks discord</div>
+      <div style="font-size:11px;color:#333;font-family:'JetBrains Mono',monospace;margin-bottom:20px;line-height:1.7">
+        cole a URL do webhook do Discord em cada campo · deixe vazio para desativar
+      </div>
+      <div class="wh-grid" id="wh-grid"></div>
+      <button class="wh-save-btn" onclick="salvarWebhooks()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        SALVAR WEBHOOKS
+      </button>
+      <div class="wh-status" id="wh-save-status"></div>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<!-- MODAL CONFIRMAÇÃO PRÓPRIO -->
+<div class="modal-wrap" id="modal-confirm">
+  <div class="modal">
+    <div class="modal-title" id="mc-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Confirmação
+    </div>
+    <div class="modal-desc" id="mc-desc"></div>
+    <div class="modal-footer">
+      <button class="mbtn-confirm" id="mc-btn-ok" onclick="executarConfirm()">Confirmar</button>
+      <button class="mbtn-cancel" onclick="fecharModal('modal-confirm')">Cancelar</button>
+    </div>
+  </div>
+</div>
 
+<!-- MODAL LEMBRETE -->
 <div class="modal-wrap" id="modal-lembrete">
   <div class="modal">
     <div class="modal-title">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       Adicionar Lembrete
     </div>
-    <div style="font-size:11px;color:#444;font-family:'JetBrains Mono',monospace;margin-bottom:12px">opcional · aparece nos logs junto com a key</div>
+    <div class="modal-desc">opcional · aparece nos logs junto com a key gerada</div>
     <label class="form-label">Lembrete</label>
-    <input class="finput" type="text" id="lembrete-input" placeholder="ex: cliente João, discord: xxx" style="margin-top:4px">
+    <input class="finput" type="text" id="lembrete-input" placeholder="ex: cliente João · discord: xxx" style="margin-top:4px">
     <div class="modal-footer">
       <button class="mbtn-confirm" onclick="confirmarLembrete()">Confirmar</button>
-      <button class="mbtn-skip" onclick="pularLembrete()">Pular</button>
+      <button class="mbtn-cancel" onclick="pularLembrete()">Pular</button>
     </div>
   </div>
 </div>
 
-
+<!-- MODAL HWID -->
 <div class="modal-wrap" id="modal-hwid">
   <div class="modal">
     <div class="modal-title">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       HWID da Key
     </div>
-    <div class="modal-key" id="m-key"></div>
+    <div class="modal-key-show" id="m-key"></div>
     <label class="form-label">Hardware ID</label>
-    <div class="modal-hwid" id="m-hwid"></div>
+    <div class="modal-hwid-val" id="m-hwid"></div>
     <div class="modal-footer">
       <button class="mbtn-copy" onclick="copyHWID()">Copiar HWID</button>
-      <button class="mbtn-close" onclick="closeModal('modal-hwid')">Fechar</button>
+      <button class="mbtn-close" onclick="fecharModal('modal-hwid')">Fechar</button>
     </div>
   </div>
 </div>
 
 <script>
 const API = '';
-let keys = [], filter = 'todas', adminSenha = '', pendingGerarData = null;
+let keys = [], filter = 'todas', adminSenha = '', pendingGerarData = null, pendingConfirmFn = null;
 
-function getSenhaHeader() {
-    return { 'Content-Type': 'application/json', 'x-admin-senha': adminSenha };
-}
+function getSenha() { return { 'Content-Type': 'application/json', 'x-admin-senha': adminSenha }; }
 
 async function api(method, endpoint, body) {
     try {
-        const opts = { method, headers: getSenhaHeader() };
+        const opts = { method, headers: getSenha() };
         if (body) opts.body = JSON.stringify(body);
         const r = await fetch(API + endpoint, opts);
         return await r.json();
     } catch { return { ok: false, erro: 'sem conexão' }; }
 }
 
+// ---- LOGIN ----
 async function fazerLogin() {
     const senha = document.getElementById('login-input').value;
-    const err = document.getElementById('login-err');
+    const err   = document.getElementById('login-err');
     if (!senha) { err.textContent = 'insira a senha'; return; }
-    const r = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senha })
-    }).then(r => r.json()).catch(() => ({ ok: false }));
-
+    const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ senha }) }).then(r => r.json()).catch(() => ({ ok: false }));
     if (r.ok) {
         adminSenha = senha;
         document.getElementById('login-screen').classList.add('gone');
@@ -442,31 +481,53 @@ function iniciarIntro() {
     const intro = document.getElementById('intro');
     intro.style.display = 'flex';
     setTimeout(() => {
-        intro.style.opacity = '0';
-        intro.style.pointerEvents = 'none';
+        intro.style.opacity = '0'; intro.style.pointerEvents = 'none';
         setTimeout(() => {
             intro.style.display = 'none';
-            const main = document.getElementById('main');
-            main.classList.add('visible');
+            document.getElementById('main').classList.add('visible');
             checarServidor();
             setInterval(checarServidor, 15000);
+            // Ping de status a cada 5min
+            setInterval(() => enviarPing('online'), 300000);
+            setTimeout(() => enviarPing('online'), 2000);
         }, 800);
     }, 2200);
 }
 
+async function enviarPing(status) {
+    await api('POST', '/api/ping', { status });
+}
+
+// ---- MODAL CONFIRMAÇÃO ----
+function confirmar(titulo, desc, fn, tipo) {
+    pendingConfirmFn = fn;
+    document.getElementById('mc-title').childNodes[1] && (document.getElementById('mc-title').lastChild.textContent = ' ' + titulo);
+    document.querySelector('#mc-title').innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      ${titulo}`;
+    document.getElementById('mc-desc').textContent = desc;
+    const btn = document.getElementById('mc-btn-ok');
+    btn.className = tipo === 'danger' ? 'mbtn-danger' : 'mbtn-confirm';
+    document.getElementById('modal-confirm').classList.add('open');
+}
+
+function executarConfirm() {
+    fecharModal('modal-confirm');
+    if (pendingConfirmFn) { pendingConfirmFn(); pendingConfirmFn = null; }
+}
+
+function fecharModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ---- SERVER ----
 async function checarServidor() {
     const r = await api('GET', '/api/keys');
     const dot = document.getElementById('srv-dot');
     const txt = document.getElementById('srv-txt');
     if (r.ok) {
-        dot.className = 'sdot green';
-        txt.textContent = 'online · MongoDB · ' + (r.keys||[]).length + ' keys · ' + (r.total_expiradas||0) + ' expiradas';
-        keys = r.keys || [];
-        updateStats(r.total_expiradas || 0);
-        renderKeys();
+        dot.className = 'sdot green'; txt.textContent = 'online · ' + (r.keys||[]).length + ' keys · ' + (r.total_expiradas||0) + ' expiradas';
+        keys = r.keys || []; updateStats(r.total_expiradas || 0); renderKeys();
     } else {
-        dot.className = 'sdot red';
-        txt.textContent = 'erro: ' + (r.erro || 'offline');
+        dot.className = 'sdot red'; txt.textContent = 'offline · ' + (r.erro || 'sem conexão');
     }
 }
 
@@ -484,7 +545,7 @@ function updateStats(expiradas) {
     document.getElementById('s-hwid').textContent = keys.filter(k => k.hwid).length;
 }
 
-
+// ---- GERAR ----
 function gerarKeys() {
     const qty = Math.min(parseInt(document.getElementById('gen-qty').value) || 1, 100);
     const duracao = document.getElementById('gen-dur').value;
@@ -495,12 +556,12 @@ function gerarKeys() {
 
 async function confirmarLembrete() {
     const lembrete = document.getElementById('lembrete-input').value.trim();
-    document.getElementById('modal-lembrete').classList.remove('open');
+    fecharModal('modal-lembrete');
     await executarGerar(lembrete || null);
 }
 
 async function pularLembrete() {
-    document.getElementById('modal-lembrete').classList.remove('open');
+    fecharModal('modal-lembrete');
     await executarGerar(null);
 }
 
@@ -509,17 +570,11 @@ async function executarGerar(lembrete) {
     const btn = document.getElementById('btn-gerar');
     btn.disabled = true;
     btn.innerHTML = '<div class="spinner"></div> gerando...';
-
     const r = await api('POST', '/api/keys/gerar', { quantidade: qty, duracao, lembrete });
-
     btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> GERAR AGORA';
-
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> GERAR AGORA';
     if (!r.ok) { toast('erro: ' + (r.erro || 'falha'), '#f87171'); return; }
-
-    keys.push(...r.novas);
-    updateStats();
-
+    keys.push(...r.novas); updateStats();
     const outBox = document.getElementById('output-keys');
     const outList = document.getElementById('output-keys-list');
     outList.innerHTML = r.novas.map(k => `
@@ -537,13 +592,16 @@ function copyAll() {
     navigator.clipboard.writeText(txt).catch(() => {}); toast('✓ todas copiadas!');
 }
 
+// ---- GERENCIAR ----
 async function revogarKey() {
     const id = document.getElementById('manage-k').value.trim().toUpperCase();
     if (!id) { toast('insira uma key', '#f87171'); return; }
-    const r = await api('POST', '/api/keys/revogar', { id });
-    if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
-    const k = keys.find(k => k.id === id); if (k) k.status = 'revogada';
-    updateStats(); renderKeys(); toast('key revogada', '#f87171');
+    confirmar('Revogar a key?', id, async () => {
+        const r = await api('POST', '/api/keys/revogar', { id });
+        if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
+        const k = keys.find(k => k.id === id); if (k) k.status = 'revogada';
+        updateStats(); renderKeys(); toast('key revogada', '#f87171');
+    }, 'danger');
 }
 
 async function restaurarKey() {
@@ -558,41 +616,41 @@ async function restaurarKey() {
 async function resetarHWID() {
     const id = document.getElementById('manage-k').value.trim().toUpperCase();
     if (!id) { toast('insira uma key', '#f87171'); return; }
-    const r = await api('POST', '/api/keys/resetar-hwid', { id });
-    if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
-    const k = keys.find(k => k.id === id); if (k) k.hwid = null;
-    updateStats(); renderKeys(); toast('✓ hwid resetado', '#60a5fa');
+    confirmar('Resetar HWID?', 'O HWID da key ' + id + ' será removido.', async () => {
+        const r = await api('POST', '/api/keys/resetar-hwid', { id });
+        if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
+        const k = keys.find(k => k.id === id); if (k) k.hwid = null;
+        updateStats(); renderKeys(); toast('✓ hwid resetado', '#60a5fa');
+    }, 'confirm');
 }
 
 async function deletarKey(id) {
     const keyId = id || document.getElementById('manage-k').value.trim().toUpperCase();
     if (!keyId) { toast('insira uma key', '#f87171'); return; }
-    if (!confirm('Deletar a key ' + keyId + '?\nEsta ação é permanente.')) return;
-    const r = await api('POST', '/api/keys/deletar', { id: keyId });
-    if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
-    keys = keys.filter(k => k.id !== keyId);
-    updateStats(); renderKeys(); toast('key deletada', '#f87171');
+    confirmar('Deletar a key?', 'A key ' + keyId + ' será removida permanentemente. Não pode ser desfeito.', async () => {
+        const r = await api('POST', '/api/keys/deletar', { id: keyId });
+        if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
+        keys = keys.filter(k => k.id !== keyId);
+        updateStats(); renderKeys(); toast('key deletada', '#f87171');
+    }, 'danger');
 }
 
 async function clearLogs() {
-    if (!confirm('Limpar todos os logs?')) return;
     const r = await api('POST', '/api/logs/clear');
-    if (!r.ok) { toast('erro ao limpar logs', '#f87171'); return; }
+    if (!r.ok) { toast('erro', '#f87171'); return; }
     document.getElementById('logs-list').innerHTML = '<div class="empty">// nenhum log ainda</div>';
     toast('✓ logs limpos', '#f87171');
 }
 
 async function clearKeys() {
-    if (!confirm('APAGAR TODAS AS KEYS?\nEsta ação é permanente e irreversível.')) return;
     const r = await api('POST', '/api/keys/clear');
     if (!r.ok) { toast('erro', '#f87171'); return; }
     keys = []; updateStats(); renderKeys(); toast('todas as keys apagadas', '#f87171');
 }
 
+// ---- KEYS LIST ----
 function setFilter(f, btn) {
-    filter = f;
-    document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on'); renderKeys();
+    filter = f; document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on')); btn.classList.add('on'); renderKeys();
 }
 
 function renderKeys() {
@@ -621,16 +679,18 @@ function renderKeys() {
             ${k.status === 'ativa'
               ? `<button class="kb d" onclick="revogarD('${k.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>revogar</button>`
               : `<button class="kb" onclick="restaurarD('${k.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>restaurar</button>`}
-            <button class="kb del" onclick="deletarKey('${k.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>del</button>
+            <button class="kb d" onclick="deletarKey('${k.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>del</button>
           </div>
         </div>`).join('');
 }
 
 async function revogarD(id) {
-    const r = await api('POST', '/api/keys/revogar', { id });
-    if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
-    const k = keys.find(k => k.id === id); if (k) k.status = 'revogada';
-    updateStats(); renderKeys(); toast('revogada', '#f87171');
+    confirmar('Revogar a key?', id, async () => {
+        const r = await api('POST', '/api/keys/revogar', { id });
+        if (!r.ok) { toast(r.erro || 'erro', '#f87171'); return; }
+        const k = keys.find(k => k.id === id); if (k) k.status = 'revogada';
+        updateStats(); renderKeys(); toast('revogada', '#f87171');
+    }, 'danger');
 }
 async function restaurarD(id) {
     const r = await api('POST', '/api/keys/restaurar', { id });
@@ -639,18 +699,19 @@ async function restaurarD(id) {
     updateStats(); renderKeys(); toast('✓ restaurada');
 }
 
+// ---- HWID ----
 function showHWID(id) {
     const k = keys.find(k => k.id === id); if (!k) return;
     document.getElementById('m-key').textContent = k.id;
     document.getElementById('m-hwid').textContent = k.hwid || 'sem hwid ainda';
     document.getElementById('modal-hwid').classList.add('open');
 }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 function copyHWID() {
     navigator.clipboard.writeText(document.getElementById('m-hwid').textContent).catch(() => {});
-    toast('✓ hwid copiado', '#60a5fa'); closeModal('modal-hwid');
+    toast('✓ hwid copiado', '#60a5fa'); fecharModal('modal-hwid');
 }
 
+// ---- LOGS ----
 async function carregarLogs() {
     const r = await api('GET', '/api/logs');
     if (!r.ok) return;
@@ -665,15 +726,78 @@ async function carregarLogs() {
         </div>`).join('');
 }
 
+// ---- WEBHOOKS ----
+const WH_CONFIGS = [
+    { key: 'gerar_key',    title: 'Gerar Key',          desc: 'Dispara quando uma ou mais keys são geradas.' },
+    { key: 'deletar_key',  title: 'Deletar Key',         desc: 'Dispara quando uma key é deletada permanentemente.' },
+    { key: 'resetar_hwid', title: 'Resetar HWID',        desc: 'Dispara quando o HWID de uma key é resetado.' },
+    { key: 'revogar_key',  title: 'Revogar Key',         desc: 'Dispara quando uma key é revogada.' },
+    { key: 'resetar_key',  title: 'Restaurar Key',       desc: 'Dispara quando uma key é restaurada para ativa.' },
+    { key: 'key_executada',title: 'Key Executada',       desc: 'Dispara quando uma key é verificada no Roblox.' },
+    { key: 'logs_excluidos',title: 'Logs Excluídos',     desc: 'Dispara quando os logs são limpos.' },
+    { key: 'ping_site',    title: 'Ping Site',           desc: 'Notifica quando o site vai online ou cai. Envia com emoji.' },
+];
+
+function renderWhGrid(webhooks) {
+    const grid = document.getElementById('wh-grid');
+    grid.innerHTML = WH_CONFIGS.map(wh => `
+        <div class="wh-card">
+          <div class="wh-card-title">${wh.title}</div>
+          <div class="wh-card-desc">${wh.desc}</div>
+          <div class="wh-row">
+            <input class="wh-input" type="text" id="wh-${wh.key}" placeholder="https://discord.com/api/webhooks/..." value="${webhooks[wh.key] || ''}">
+            <button class="wh-test" onclick="testarWebhook('${wh.key}')">testar</button>
+          </div>
+        </div>
+    `).join('');
+}
+
+async function carregarWebhooks() {
+    const r = await api('GET', '/api/webhooks');
+    renderWhGrid(r.ok ? (r.webhooks || {}) : {});
+}
+
+async function salvarWebhooks() {
+    const webhooks = {};
+    WH_CONFIGS.forEach(wh => {
+        const val = document.getElementById('wh-' + wh.key)?.value?.trim();
+        if (val) webhooks[wh.key] = val;
+    });
+    const r = await api('POST', '/api/webhooks', { webhooks });
+    const st = document.getElementById('wh-save-status');
+    if (r.ok) {
+        st.textContent = '✓ webhooks salvos com sucesso';
+        st.style.color = '#4ade80';
+        toast('✓ webhooks salvos!');
+    } else {
+        st.textContent = '✗ erro ao salvar';
+        st.style.color = '#f87171';
+    }
+    setTimeout(() => { st.textContent = ''; }, 3000);
+}
+
+async function testarWebhook(key) {
+    const input = document.getElementById('wh-' + key);
+    const whUrl = input?.value?.trim();
+    if (!whUrl) { toast('cole a URL primeiro', '#f87171'); return; }
+    const wh = WH_CONFIGS.find(w => w.key === key);
+    const r = await api('POST', '/api/webhooks/testar', { tipo: wh?.title || key, whUrl });
+    if (r.ok) { toast('✓ teste enviado no Discord!'); }
+    else { toast('erro: ' + (r.erro || 'falha'), '#f87171'); }
+}
+
+// ---- TABS ----
 function switchTab(name, btn) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('on'));
     document.getElementById('tab-' + name).classList.add('on');
     document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    if (name === 'keys') { checarServidor(); }
+    if (name === 'keys') checarServidor();
     if (name === 'logs') carregarLogs();
+    if (name === 'webhook') carregarWebhooks();
 }
 
+// ---- CANVAS ----
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let W, H, rings = [], tick = 0;
